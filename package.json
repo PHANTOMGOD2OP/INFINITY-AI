@@ -1,6 +1,6 @@
 {
-  "name": "next13-ai-saas",
-  "version": "0.1.0",
+  "name": "infinityai",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -35,7 +35,7 @@
     "lucide-react": "^0.259.0",
     "next": "13.4.9",
     "next-themes": "^0.2.1",
-    "openai": "^3.3.0",
+    "openai": "^4.12.1",
     "postcss": "8.4.25",
     "react": "18.2.0",
     "react-dom": "18.2.0",

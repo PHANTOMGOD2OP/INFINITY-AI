@@ -24,7 +24,7 @@ export async function POST(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    if (!configuration.apiKey) {
+    if (!openai.apiKey) {
       return new NextResponse("OpenAI API Key not configured.", { status: 500 });
     }
 

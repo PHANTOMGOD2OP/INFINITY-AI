@@ -45,6 +45,10 @@ const ConversationPage = () => {
       const userMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
         role: "user",
         content: values.prompt,
+       };
+
+      const newMessages = [...messages, userMessage];
+      
       const response = await axios.post('/api/conversation', { messages: newMessages });
       setMessages((current) => [...current, userMessage, response.data]);
       

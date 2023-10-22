@@ -5,11 +5,12 @@ import { Configuration, OpenAIApi } from "openai";
 import { checkSubscription } from "@/lib/subscription";
 import { incrementApiLimit, checkApiLimit } from "@/lib/api-limit";
 
-const configuration = new Configuration({
+
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const openai = new OpenAIApi(configuration);
+
 
 export async function POST(
   req: Request

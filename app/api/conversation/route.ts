@@ -1,7 +1,6 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
-import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 import { checkSubscription } from "@/lib/subscription";
 import { incrementApiLimit, checkApiLimit } from "@/lib/api-limit";
 
@@ -9,7 +8,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const instructionMessage: ChatCompletionMessageParam = {
+const instructionMessage: OpenAI.Chat.ChatCompletionMessageParam = {
   role: "system",
   content: "Answer questions as accurate , efficiently and quickly as possible. You must do it under 4000 tokens."
 }

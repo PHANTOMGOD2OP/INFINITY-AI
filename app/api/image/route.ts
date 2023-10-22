@@ -47,7 +47,7 @@ export async function POST(
       return new NextResponse("Free trial has expired. Please upgrade to pro.", { status: 403 });
     }
 
-    const response = await openai.createImage({
+    const response = await openai.images.generate({
       prompt,
       n: parseInt(amount, 10),
       size: resolution,

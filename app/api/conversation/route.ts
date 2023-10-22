@@ -40,8 +40,7 @@ export async function POST(
 
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages,
-      temperature = 1.2
+      messages
     });
 
     if (!isPro) {

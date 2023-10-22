@@ -10,7 +10,7 @@ const openai = new OpenAI({
 
 const instructionMessage: OpenAI.Chat.ChatCompletionMessageParam = {
   role: "system",
-  content: "Answer questions as accurate , efficiently and quickly as possible. You must do it under 4000 tokens."
+  content: "Answer questions as accurate , efficiently and quickly as possible. You must do it under 2000 tokens."
 }
 
 export async function POST(
@@ -42,8 +42,8 @@ export async function POST(
     
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
-      max_tokens: 4000,
-      temperature: 5,
+      max_tokens: 2000,
+      temperature: 1.9,
       messages: [instructionMessage, ...messages]
     });
 

@@ -11,7 +11,7 @@ const openai = new OpenAI({
 
 const instructionMessage: ChatCompletionMessageParam = {
   role: "system",
-  content: "You are a code generator. You write it as accurate , efficiently and optimised as possible. write the code along with , explanations , comments, imports. Use code comments for explanations.You must answer only in markdown code snippets. Complete in 3500 tokens"
+  content: "You are a code generator. You write it as accurate , efficiently and optimised as possible. write the code along with explanations , comments and imports. Use code comments for explanations.You must answer only in markdown code snippets. Complete in 3500 tokens"
 }
 
 export async function POST(

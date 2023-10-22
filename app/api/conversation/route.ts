@@ -9,6 +9,10 @@ const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+const instructionMessage: ChatCompletionMessageParam = {
+  role: "system",
+  content: "Answer questions as short and quickly as possible. You must do it under 4000 tokens."
+}
 const openai = new OpenAIApi(configuration);
 
 export async function POST(
@@ -38,9 +42,11 @@ export async function POST(
       return new NextResponse("Free trial has expired. Please upgrade to pro.", { status: 403 });
     }
 
-    const response = await openai.createChatCompletion({
+     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
-      messages
+      max_tokens: 4000,
+      temperature: 3,
+      messages: [instructionMessage, ...messages]
     });
 
     if (!isPro) {

@@ -44,7 +44,7 @@ export async function POST(
       model: "gpt-3.5-turbo",
       messages: [instructionMessage, ...messages],
       temperature: 0.9,
-      max_tokens: 2000
+      max_tokens: 1500
     });
 
     if (!isPro) {

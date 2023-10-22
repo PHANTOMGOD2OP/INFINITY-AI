@@ -1,28 +1,31 @@
 "use client";
+import * as z from "zod";
+import axios from "axios";
+import { MessageSquare } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import OpenAI from "openai";
 
-import Heading from "@/components/heading";
-import { Input } from "@/components/ui/input";
+import { BotAvatar } from "@/components/bot-avatar";
+import { Heading } from "@/components/heading";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { cn } from "@/lib/utils";
+import { Loader } from "@/components/loader";
+import { UserAvatar } from "@/components/user-avatar";
+import { Empty } from "@/components/ui/empty";
+import { useProModal } from "@/hooks/use-pro-modal";
+
 import { formSchema } from "./constants";
 
-import axios from "axios";
-import * as z from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { MessageSquare } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import OpenAI from "openai";
-import { Empty } from "@/components/empty";
-import { Loader } from "@/components/ui/loader";
-import { cn } from "@/lib/utils";
-import { UserAvatar } from "@/components/user-avatar";
-import { BotAvatar } from "@/components/bot-avatar";
-import ReactMarkdown from "react-markdown";
 
 const ConversationPage = () => {
   const router = useRouter();
+  const proModal = useProModal();
   const [messages, setMessages] = useState<
     OpenAI.Chat.CreateChatCompletionRequestMessage[]
   >([]);
@@ -52,8 +55,11 @@ const ConversationPage = () => {
 
       form.reset();
     } catch (error: any) {
-      //ToDo: Open Pro model
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      } else {
+        toast.error("Something went wrong.");
+      }
     } finally {
       router.refresh();
     }

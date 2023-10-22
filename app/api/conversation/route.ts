@@ -43,7 +43,7 @@ export async function POST(
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       max_tokens: 4000,
-      temperature: 2,
+      temperature: 5,
       messages: [instructionMessage, ...messages]
     });
 

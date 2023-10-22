@@ -10,7 +10,7 @@ const openai = new OpenAI({
 
 const instructionMessage: OpenAI.Chat.ChatCompletionMessageParam = {
   role: "system",
-  content: "You are a code generator. You write it as accurate , efficiently and optimised as possible.Use code comments for explanations.You must answer only in markdown code snippets. Complete in 2000 tokens"
+  content: "You are a code generator. You write it as accurate , efficiently and optimised as possible.Use code comments for explanations.You must answer only in markdown code snippets"
 }
 
 export async function POST(

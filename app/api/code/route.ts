@@ -1,7 +1,6 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
-import { ChatCompletionMessageParam, CreateChatCompletionRequestMessage } from "openai/resources/index.mjs";
 import { checkSubscription } from "@/lib/subscription";
 import { incrementApiLimit, checkApiLimit } from "@/lib/api-limit";
 
@@ -9,7 +8,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const instructionMessage: ChatCompletionMessageParam = {
+const instructionMessage: OpenAI.Chat.CreateChatCompletionMessageParam = {
   role: "system",
   content: "You are a code generator. You write it as accurate , efficiently and optimised as possible. write the code along with explanations , comments and imports. Use code comments for explanations.You must answer only in markdown code snippets. Complete in 3500 tokens"
 }

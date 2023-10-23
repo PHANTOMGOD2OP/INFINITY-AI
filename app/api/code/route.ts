@@ -10,7 +10,7 @@ const openai = new OpenAI({
 
 const instructionMessage: OpenAI.Chat.ChatCompletionMessageParam = {
   role: "system",
-  content: "You are a code generator. You write it as accurate , efficiently and optimised as possible.Write Only Code And No Comments or explanation.You must answer only in markdown code snippets"
+  content: "You are a code generator. You write it as accurate , efficiently and optimised as possible.Write The Code Along with Comments and explanation.You must answer only in markdown code snippets.complete in 3500 tokens"
 }
 
 export async function POST(
@@ -43,8 +43,8 @@ export async function POST(
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [instructionMessage, ...messages],
-      temperature: 0.9,
-      max_tokens: 1500
+      temperature: 1.2,
+      max_tokens: 3500
     });
 
     if (!isPro) {

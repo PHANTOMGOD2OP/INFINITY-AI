@@ -1,0 +1,10 @@
+{
+"functions": {
+"app/api/**/*.ts": {
+"memory": 3008,
+"maxDuration": 300
+}
+
+  }
+
+}

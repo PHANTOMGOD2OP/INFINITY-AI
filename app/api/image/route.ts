@@ -12,9 +12,7 @@ const openai = new OpenAI({
 
 
 
-export async function POST(
-  req: Request
-) {
+export async function POST(req: Request , res) {
   try {
     const { userId } = auth();
     const body = await req.json();
@@ -56,10 +54,15 @@ export async function POST(
     if (!isPro) {
       await incrementApiLimit();
     }
-
-    return NextResponse(image_url);
+    res.status(200).json({
+      success: true,
+      data: image_url,
+    });
   } catch (error) {
-    console.log('[IMAGE_ERROR]', error);
-    return new NextResponse("Internal Error", { status: 500 });
-  }
-};
+    console.log(error);
+    // send error to front end, so user can easily see that something went wrong
+    res.status(400).json({
+      success: false,
+      error: "The image could not be generated",
+     }
+    };

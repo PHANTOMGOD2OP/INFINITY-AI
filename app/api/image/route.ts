@@ -52,12 +52,12 @@ export async function POST(
       n: parseInt(amount, 10),
       size: resolution,
     });
-
+    const image_url = response.data[0].url;
     if (!isPro) {
       await incrementApiLimit();
     }
 
-    return NextResponse(response.data[0].url);
+    return NextResponse(image_url);
   } catch (error) {
     console.log('[IMAGE_ERROR]', error);
     return new NextResponse("Internal Error", { status: 500 });

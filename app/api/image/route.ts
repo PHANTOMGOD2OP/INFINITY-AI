@@ -53,7 +53,7 @@ export async function POST(req: Request) {
     if (!isPro) {
       await incrementApiLimit();
     }
-    return NextResponse.json(response.data[0].urls);
+    return NextResponse.json(response.data);
   } catch (error) {
     console.log('[IMAGE_ERROR]', error);
     return new NextResponse("Internal Error", { status: 500 });
